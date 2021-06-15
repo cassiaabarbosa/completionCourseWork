@@ -8,11 +8,15 @@ class ScanButton: UIButton {
     
     @TemplateView var logoView: UIImageView
     
+    var didTap: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         buildViewHierarchy()
         applyConstraints()
+        addAction(.init(handler: {_ in
+            self.didTap?()
+        }), for: .touchUpInside)
     }
     
     override func layoutSubviews() {
@@ -20,6 +24,7 @@ class ScanButton: UIButton {
         setupBiggerView()
         setupSmallerView()
         setupLogoView()
+        self.backgroundColor = .blue
     }
     
     private func buildViewHierarchy() {
@@ -35,14 +40,14 @@ class ScanButton: UIButton {
             biggerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             biggerView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
             smallerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             smallerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             smallerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
             smallerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
         ])
-        
+
         NSLayoutConstraint.activate([
             logoView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             logoView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -55,27 +60,24 @@ class ScanButton: UIButton {
         biggerView.clipsToBounds = true
         biggerView.layer.cornerRadius = biggerView.bounds.size.width / 2
         biggerView.backgroundColor = .tccBiggerViewBackground
+        biggerView.isUserInteractionEnabled = false
     }
     
     private func setupSmallerView() {
         smallerView.clipsToBounds = true
         smallerView.layer.cornerRadius = smallerView.bounds.size.width / 2
         smallerView.backgroundColor = .tccSmallerViewBackground
+        smallerView.isUserInteractionEnabled = false
     }
     
     private func setupLogoView() {
         logoView.image = UIImage()
         logoView.backgroundColor = .red
+        logoView.isUserInteractionEnabled = false
     }
     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    @objc func buttonAction() {
-        print( "vai pra outra tela")
-    }
-    
-    
 }
