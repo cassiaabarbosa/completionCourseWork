@@ -1,6 +1,6 @@
 import UIKit
 
-class SingleAmountTableCell: UITableViewCell {
+class HeaderView: UITableViewCell {
     
     static var id: String {
         return String(describing: self)
@@ -15,20 +15,15 @@ class SingleAmountTableCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func cellAttributes() {
         backgroundColor = .tccBlack
         textLabel?.textColor = .white
+        textLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         textLabel?.textAlignment = .center
-        textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        textLabel?.numberOfLines = 0
     }
-    
-    func show(value: Int, amount: Int) {
-        if amount > 1 {
-            self.textLabel?.text = "Há \(amount) notas de R$ \(value),00"
-        } else {
-            self.textLabel?.text = "Há \(amount) nota de R$ \(value),00"
-        }
+
+    func show(text: String) {
+        textLabel?.text = text
     }
 }

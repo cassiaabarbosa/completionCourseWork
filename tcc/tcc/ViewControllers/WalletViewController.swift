@@ -95,25 +95,27 @@ extension WalletViewController: ViewControllerDelegate {
     }
 }
 
-extension WalletViewController: UITableViewDelegate {
-
-}
+extension WalletViewController: UITableViewDelegate {}
 
 extension WalletViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.cells.count
+        return presenter.cells.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SingleAmountTableCell", for: indexPath) as? SingleAmountTableCell else {
-            return UITableViewCell()
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HeaderView.id, for: indexPath) as? HeaderView else {
+                return UITableViewCell()
+            }
+            cell.show(text: "A quantia total é de R$ \(presenter.getTotalAmount())")
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SingleAmountTableCell.id, for: indexPath) as? SingleAmountTableCell else {
+                return UITableViewCell()
+            }
+            cell.show(value: presenter.cells[indexPath.row - 1].value,
+                      amount: presenter.cells[indexPath.row - 1].amount)
+            return cell
         }
-        cell.show(value: presenter.cells[indexPath.row].value,
-                  amount: presenter.cells[indexPath.row].amount)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "A quantia total é de R$ \(presenter.getTotalAmount())"
     }
 }
