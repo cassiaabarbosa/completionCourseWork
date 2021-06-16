@@ -2,6 +2,10 @@ import UIKit
 
 class SingleAmountTableCell: UITableViewCell {
     
+    static var id: String {
+        return String(describing: self)
+    }
+
     @TemplateView var amount: UILabel
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,14 +32,14 @@ class SingleAmountTableCell: UITableViewCell {
     private func setupAmount() {
         amount.textColor = .white
         amount.textAlignment = .center
-        amount.font = UIFont.boldSystemFont(ofSize: 55)
+        amount.font = UIFont.boldSystemFont(ofSize: 20)
         amount.numberOfLines = 0
     }
     
     private func applyConstraints() {
         NSLayoutConstraint.activate([
-            amount.topAnchor.constraint(equalTo: contentView.topAnchor),
-            amount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            amount.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            amount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             amount.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             amount.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])

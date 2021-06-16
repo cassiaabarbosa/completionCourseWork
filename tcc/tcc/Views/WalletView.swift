@@ -43,31 +43,35 @@ class WalletView: UIView {
         NSLayoutConstraint.activate([
             repeatScan.topAnchor.constraint(equalTo: topAnchor,
                                             constant: (frame.height * 0.5)),
-            repeatScan.heightAnchor.constraint(equalToConstant: frame.height * 0.15),
-            repeatScan.widthAnchor.constraint(equalToConstant: frame.width * 0.8),
+            repeatScan.heightAnchor.constraint(equalToConstant: frame.height * 0.1),
+            repeatScan.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
             repeatScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
         NSLayoutConstraint.activate([
             newScan.topAnchor.constraint(equalTo: repeatScan.bottomAnchor,
                                          constant: (frame.height * 0.04)),
-            newScan.heightAnchor.constraint(equalToConstant: frame.height * 0.15),
-            newScan.widthAnchor.constraint(equalToConstant: frame.width * 0.8),
+            newScan.heightAnchor.constraint(equalToConstant: frame.height * 0.1),
+            newScan.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
             newScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
     func setupTableView() {
         tableView.backgroundColor = .tccBlack
+        tableView.separatorColor = .clear
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
         tableView.register(SingleAmountTableCell.self,
-                           forCellReuseIdentifier: "SingleAmountTableCell")
+                           forCellReuseIdentifier: SingleAmountTableCell.id)
+        tableView.register(HeaderView.self,
+                           forCellReuseIdentifier: HeaderView.id)
     }
     
     private func setupRepeatScan() {
         repeatScan.setTitle("Escanear próxima nota",
                             for: .normal)
+        repeatScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         repeatScan.layer.cornerRadius = frame.width * 0.06
         repeatScan.backgroundColor = .tccSmallerViewBackground
         repeatScan.addAction(UIAction(handler: {(_) in
@@ -78,6 +82,7 @@ class WalletView: UIView {
     private func setupNewScan() {
         newScan.setTitle("Começar nova contagem",
                          for: .normal)
+        newScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         newScan.layer.cornerRadius = frame.width * 0.06
         newScan.backgroundColor = .tccSmallerViewBackground
         newScan.addAction(UIAction(handler: {(_) in
