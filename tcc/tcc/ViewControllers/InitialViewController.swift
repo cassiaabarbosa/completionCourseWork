@@ -26,10 +26,17 @@ final class InitialViewController: UIViewController {
         bindActions()
         setupPickerAddPhotoButton()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        contentView.resteScanButtonAffineTransform()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        contentView.animateScan()
+    }
 
     private func setupNavigationControllerAttributes() {
-        navigationController?.navigationBar.barTintColor = .tccBlack
-        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func loadView() {

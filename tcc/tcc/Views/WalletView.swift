@@ -6,6 +6,8 @@ class WalletView: UIView {
     @TemplateView var newScan: UIButton
     @TemplateView var tableView: UITableView
     
+    private var heightConstraint: NSLayoutConstraint?
+    
     var didTapRepeatScan: (() -> Void)?
     var didTapNewScan: (() -> Void)?
     
@@ -34,23 +36,24 @@ class WalletView: UIView {
     }
     
     private func applyConstraints() {
+        heightConstraint = tableView.heightAnchor.constraint(equalToConstant: 160)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: frame.height * 0.45),
+            tableView.bottomAnchor.constraint(equalTo: repeatScan.topAnchor, constant: -30),
+            heightConstraint!,
             tableView.widthAnchor.constraint(equalToConstant: frame.width)
         ])
 
         NSLayoutConstraint.activate([
-            repeatScan.topAnchor.constraint(equalTo: topAnchor,
-                                            constant: (frame.height * 0.5)),
+            repeatScan.bottomAnchor.constraint(equalTo: newScan.topAnchor,
+                                            constant: (frame.height * -0.05)),
             repeatScan.heightAnchor.constraint(equalToConstant: frame.height * 0.1),
             repeatScan.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
             repeatScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
         NSLayoutConstraint.activate([
-            newScan.topAnchor.constraint(equalTo: repeatScan.bottomAnchor,
-                                         constant: (frame.height * 0.04)),
+            newScan.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                            constant: (frame.height * -0.15)),
             newScan.heightAnchor.constraint(equalToConstant: frame.height * 0.1),
             newScan.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
             newScan.centerXAnchor.constraint(equalTo: centerXAnchor)
@@ -66,6 +69,7 @@ class WalletView: UIView {
                            forCellReuseIdentifier: SingleAmountTableCell.id)
         tableView.register(HeaderView.self,
                            forCellReuseIdentifier: HeaderView.id)
+        tableView.indicatorStyle = .white
     }
     
     private func setupRepeatScan() {
@@ -90,7 +94,30 @@ class WalletView: UIView {
         }), for: .touchUpInside)
     }
     
+    private func setTableviewHeight() {
+        if (tableView.contentSize.height + 30) < (safeAreaLayoutGuide.layoutFrame.height * 0.5) {
+            heightConstraint?.constant = tableView.contentSize.height + 30
+        } else {
+            startTimerForShowScrollIndicator()
+        }
+    }
+    
+    private func startTimerForShowScrollIndicator() {
+        Timer.scheduledTimer(timeInterval: 0.3,
+                            target: self,
+                            selector: #selector(self.showScrollIndicators),
+                            userInfo: nil,
+                            repeats: true)
+    }
+    
+    @objc func showScrollIndicators() {
+        UIView.animate(withDuration: 0.001) {
+            self.tableView.flashScrollIndicators()
+        }
+        
+    }
     func reloadData() {
         tableView.reloadData()
+        setTableviewHeight()
     }
 }

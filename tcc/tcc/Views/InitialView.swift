@@ -38,8 +38,7 @@ class InitialView: UIView {
         NSLayoutConstraint.activate([
             scanText.centerYAnchor.constraint(equalTo: centerYAnchor, constant: frame.height * -0.2),
             scanText.centerXAnchor.constraint(equalTo: centerXAnchor),
-            scanText.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
-            scanText.heightAnchor.constraint(equalToConstant: frame.width * 0.7)
+            scanText.widthAnchor.constraint(equalToConstant: frame.width * 0.8)
         ])
     }
     
@@ -63,5 +62,19 @@ class InitialView: UIView {
     
     private func bindActions() {
         scanButton.didTap = didTapScanButton
+    }
+    
+    func resteScanButtonAffineTransform() {
+        scanButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+    }
+    
+    func animateScan() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0,
+                       options: [.autoreverse, .repeat, .allowUserInteraction],
+                       animations: {
+                        self.scanButton.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                       },
+                       completion:  nil)
     }
 }
