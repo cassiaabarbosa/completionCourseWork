@@ -38,9 +38,7 @@ final class WalletViewController: UIViewController {
     }
     
     private func setupNavigationControllerAttributes() {
-        navigationController?.navigationBar.barTintColor = .tccBlack
-        navigationController?.navigationBar.isTranslucent = false
-        navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     private func setupPickerAddPhotoButton() {
