@@ -6,6 +6,8 @@ class WalletView: UIView {
     @TemplateView var newScan: UIButton
     @TemplateView var tableView: UITableView
     
+    private var heightConstraint: NSLayoutConstraint?
+    
     var didTapRepeatScan: (() -> Void)?
     var didTapNewScan: (() -> Void)?
     
@@ -34,9 +36,10 @@ class WalletView: UIView {
     }
     
     private func applyConstraints() {
+        heightConstraint = tableView.heightAnchor.constraint(equalToConstant: 160)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: frame.height * 0.45),
+            tableView.bottomAnchor.constraint(equalTo: repeatScan.topAnchor, constant: -30),
+            heightConstraint!,
             tableView.widthAnchor.constraint(equalToConstant: frame.width)
         ])
 
@@ -90,7 +93,14 @@ class WalletView: UIView {
         }), for: .touchUpInside)
     }
     
+    private func setTableviewHeight() {
+        if (tableView.contentSize.height + 30) < (safeAreaLayoutGuide.layoutFrame.height * 0.5) {
+            heightConstraint?.constant = tableView.contentSize.height + 30
+        }
+    }
+    
     func reloadData() {
         tableView.reloadData()
+        setTableviewHeight()
     }
 }
