@@ -60,7 +60,8 @@ final class InitialViewController: UIViewController {
 extension InitialViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             picker.dismiss(animated: true, completion: {
-                self.coordinator.recognization?.goToWallet()
+                let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+                self.coordinator.recognization?.goToWallet(image: image)
             })
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8338F6E6267280CE005FCD7A /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8338F6E5267280CE005FCD7A /* InitialView.swift */; };
 		8338F6E82672A442005FCD7A /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8338F6E72672A442005FCD7A /* WalletView.swift */; };
+		8350C6092682991C008F289B /* FlowerShop.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8350C6082682991C008F289B /* FlowerShop.mlmodel */; };
 		837416CA26697F6500EF8BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837416C926697F6500EF8BB3 /* AppDelegate.swift */; };
 		837416CC26697F6500EF8BB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837416CB26697F6500EF8BB3 /* SceneDelegate.swift */; };
 		837416CE26697F6500EF8BB3 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837416CD26697F6500EF8BB3 /* InitialViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		8338F6E5267280CE005FCD7A /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		8338F6E72672A442005FCD7A /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		8350C6082682991C008F289B /* FlowerShop.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerShop.mlmodel; sourceTree = "<group>"; };
 		837416C626697F6500EF8BB3 /* tcc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tcc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837416C926697F6500EF8BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		837416CB26697F6500EF8BB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		837416C826697F6500EF8BB3 /* tcc */ = {
 			isa = PBXGroup;
 			children = (
+				8350C6082682991C008F289B /* FlowerShop.mlmodel */,
 				838C95632673E4F4003D6B96 /* Presenter */,
 				83C7CD51266ECA0C00D9DC51 /* Protocols */,
 				83C7CD4E266EC97A00D9DC51 /* Models */,
@@ -241,6 +244,7 @@
 				8338F6E82672A442005FCD7A /* WalletView.swift in Sources */,
 				838C956926765FBD003D6B96 /* SingleAmountTableCell.swift in Sources */,
 				83C7CD54266ECA1D00D9DC51 /* Protocols.swift in Sources */,
+				8350C6092682991C008F289B /* FlowerShop.mlmodel in Sources */,
 				8381CD2826781C41007B7686 /* BankNote.swift in Sources */,
 				837416CE26697F6500EF8BB3 /* InitialViewController.swift in Sources */,
 				83C7CD56266ECDB200D9DC51 /* WalletViewController.swift in Sources */,
