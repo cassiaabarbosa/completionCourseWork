@@ -6,6 +6,7 @@ struct BankNote {
 }
 
 enum RealBankNote {
+    case zero
     case two
     case five
     case ten
