@@ -38,19 +38,19 @@ class BankNoteRecognization {
     }
     
     private func translate(identifier: String) -> RealBankNote {
-        if identifier == "Agapanthus" { return RealBankNote.two }
-        else if identifier == "Bougainvillea" { return RealBankNote.five }
-        else if identifier == "Jasmine" { return RealBankNote.ten }
-        else if identifier == "Ivy" { return RealBankNote.twenty }
-        else if identifier == "Tansy" { return RealBankNote.fifty }
-        else if identifier == "Trumpet_creeper" { return RealBankNote.hundred }
-        else if identifier == "zero" {return RealBankNote.zero}
-        else { return RealBankNote.twoHundred }
+        if identifier == "2reais" { return RealBankNote.two }
+        else if identifier == "5reais" { return RealBankNote.five }
+        else if identifier == "10reais" { return RealBankNote.ten }
+        else if identifier == "20reais" { return RealBankNote.twenty }
+        else if identifier == "50reais" { return RealBankNote.fifty }
+        else if identifier == "100reais" { return RealBankNote.hundred }
+        else if identifier == "200reais" { return RealBankNote.twoHundred }
+        else { return RealBankNote.zero }
     }
 
     lazy var classificationRequest: VNCoreMLRequest = {
         do {
-            let model = try VNCoreMLModel(for: FlowerShop().model)
+            let model = try VNCoreMLModel(for: MyImageClassifier().model)
             
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
@@ -93,11 +93,10 @@ class BankNoteRecognization {
                 print("Unable to classify image.\n\(error!.localizedDescription)")
                 delegate?.goToWallet(with: self.doRecognization(identifier: "zero"))
             } else {
-                let topClassifications = classifications.prefix(1)
-                
-                let description = topClassifications[0]
-                print("Classification: " + description.identifier)
-                delegate?.goToWallet(with: self.doRecognization(identifier: description.identifier))
+                let topClassification = classifications[0]
+
+                print("Classification: " + topClassification.identifier)
+                delegate?.goToWallet(with: self.doRecognization(identifier: topClassification.identifier))
             }
         }
     }

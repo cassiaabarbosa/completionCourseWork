@@ -2,12 +2,15 @@ import UIKit
 
 class WalletView: UIView {
     
+    @TemplateView var whatToDo: UILabel
     @TemplateView var repeatScan: UIButton
+    @TemplateView var nextScan: UIButton
     @TemplateView var newScan: UIButton
     @TemplateView var tableView: UITableView
     
     private var heightConstraint: NSLayoutConstraint?
     
+    var didTapNextScan: (() -> Void)?
     var didTapRepeatScan: (() -> Void)?
     var didTapNewScan: (() -> Void)?
     
@@ -16,12 +19,13 @@ class WalletView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        backgroundColor = .tccBlack
         buildViewHierarchy()
         applyConstraints()
+        setupWhatToDo()
         setupNewScan()
+        setupNextScan()
         setupRepeatScan()
-        backgroundColor = .tccBlack
+        backgroundColor = .blue
     }
     
     @available(*, unavailable)
@@ -31,37 +35,53 @@ class WalletView: UIView {
     
     private func buildViewHierarchy() {
         addSubview(tableView)
+        addSubview(whatToDo)
         addSubview(repeatScan)
+        addSubview(nextScan)
         addSubview(newScan)
     }
     
     private func applyConstraints() {
         heightConstraint = tableView.heightAnchor.constraint(equalToConstant: 160)
         NSLayoutConstraint.activate([
-            tableView.bottomAnchor.constraint(equalTo: repeatScan.topAnchor, constant: -30),
+            tableView.bottomAnchor.constraint(equalTo: repeatScan.topAnchor, constant: -100),
             heightConstraint!,
             tableView.widthAnchor.constraint(equalToConstant: frame.width)
         ])
 
         NSLayoutConstraint.activate([
-            repeatScan.bottomAnchor.constraint(equalTo: newScan.topAnchor,
+            whatToDo.bottomAnchor.constraint(equalTo: repeatScan.topAnchor,
+                                             constant: (frame.height * -0.025)),
+            whatToDo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: (frame.width * 0.1))
+        ])
+        
+        NSLayoutConstraint.activate([
+            repeatScan.bottomAnchor.constraint(equalTo: nextScan.topAnchor,
                                             constant: (frame.height * -0.05)),
-            repeatScan.heightAnchor.constraint(equalToConstant: frame.height * 0.1),
-            repeatScan.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
+            repeatScan.heightAnchor.constraint(equalToConstant: 70),
+            repeatScan.widthAnchor.constraint(equalToConstant: frame.width * 0.8),
             repeatScan.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            nextScan.bottomAnchor.constraint(equalTo: newScan.topAnchor,
+                                            constant: (frame.height * -0.05)),
+            nextScan.heightAnchor.constraint(equalToConstant: 70),
+            nextScan.widthAnchor.constraint(equalToConstant: frame.width * 0.8),
+            nextScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
         NSLayoutConstraint.activate([
             newScan.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                            constant: (frame.height * -0.15)),
-            newScan.heightAnchor.constraint(equalToConstant: frame.height * 0.1),
-            newScan.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
+                                            constant: (frame.height * -0.05)),
+            newScan.heightAnchor.constraint(equalToConstant: 70),
+            newScan.widthAnchor.constraint(equalToConstant: frame.width * 0.8),
             newScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
     func setupTableView() {
-        tableView.backgroundColor = .tccBlack
+        tableView.backgroundColor = .red
         tableView.separatorColor = .clear
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
@@ -72,21 +92,45 @@ class WalletView: UIView {
         tableView.indicatorStyle = .white
     }
     
+    private func setupWhatToDo() {
+        whatToDo.text = "O que deseja fazer?"
+        whatToDo.font = UIFont.boldSystemFont(ofSize: 18)
+        whatToDo.textAlignment = .left
+        whatToDo.textColor = .white
+    }
+    
     private func setupRepeatScan() {
-        repeatScan.setTitle("Escanear próxima nota",
+        repeatScan.setTitle("Fotografar mesma nota para substituir na contagem",
                             for: .normal)
-        repeatScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        repeatScan.titleLabel?.lineBreakMode = .byWordWrapping
+        repeatScan.titleLabel?.textAlignment = .center
+        repeatScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         repeatScan.layer.cornerRadius = frame.width * 0.06
         repeatScan.backgroundColor = .tccSmallerViewBackground
         repeatScan.addAction(UIAction(handler: {(_) in
             self.didTapRepeatScan?()
         }), for: .touchUpInside)
     }
-
-    private func setupNewScan() {
-        newScan.setTitle("Começar nova contagem",
+    
+    private func setupNextScan() {
+        nextScan.setTitle("Fotografar nova nota para continuar a contagem",
                          for: .normal)
-        newScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        nextScan.titleLabel?.lineBreakMode = .byWordWrapping
+        nextScan.titleLabel?.textAlignment = .center
+        nextScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        nextScan.layer.cornerRadius = frame.width * 0.06
+        nextScan.backgroundColor = .tccSmallerViewBackground
+        nextScan.addAction(UIAction(handler: {(_) in
+            self.didTapNextScan?()
+        }), for: .touchUpInside)
+    }
+    
+    private func setupNewScan() {
+        newScan.setTitle("Encerrar contagem",
+                         for: .normal)
+        newScan.titleLabel?.lineBreakMode = .byWordWrapping
+        newScan.titleLabel?.textAlignment = .center
+        newScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         newScan.layer.cornerRadius = frame.width * 0.06
         newScan.backgroundColor = .tccSmallerViewBackground
         newScan.addAction(UIAction(handler: {(_) in

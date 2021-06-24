@@ -17,7 +17,7 @@ class SingleAmountTableCell: UITableViewCell {
     }
     
     private func cellAttributes() {
-        backgroundColor = .tccBlack
+        backgroundColor = .red
         textLabel?.textColor = .white
         textLabel?.textAlignment = .center
         textLabel?.font = UIFont.boldSystemFont(ofSize: 20)

@@ -14,7 +14,6 @@ final class WalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationControllerAttributes()
-        view.backgroundColor = .tccBlack
     }
     
     init(coordinator: Coordinator,
@@ -49,14 +48,20 @@ final class WalletViewController: UIViewController {
     private func bindActions() {
         contentView.didTapNewScan = didTapNewScan
         contentView.didTapRepeatScan = didTapRepeatScan
+        contentView.didTapNextScan = didTapNextScan
     }
 
     private func didTapRepeatScan() {
+        presenter.removeOcurrence(amount: addedAmount)
         coordinator.openCamera()
     }
     
     private func didTapNewScan() {
         coordinator.backToInitialViewController()
+    }
+    
+    private func didTapNextScan() {
+        coordinator.openCamera()
     }
     
     private func setupTableViewObjects() {
@@ -72,6 +77,7 @@ final class WalletViewController: UIViewController {
     
     private func updateAmountValue(amount: Int) {
         presenter.append(amount: amount)
+        addedAmount = amount
         DispatchQueue.main.async {
             self.contentView.reloadData()
         }
@@ -107,6 +113,7 @@ extension WalletViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.show(text: "A quantia total é de R$ \(presenter.getTotalAmount())")
+            cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SingleAmountTableCell.id, for: indexPath) as? SingleAmountTableCell else {
@@ -114,6 +121,7 @@ extension WalletViewController: UITableViewDataSource {
             }
             cell.show(value: presenter.cells[indexPath.row - 1].value,
                       amount: presenter.cells[indexPath.row - 1].amount)
+            cell.selectionStyle = .none
             return cell
         }
     }

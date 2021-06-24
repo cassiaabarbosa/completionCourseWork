@@ -17,7 +17,7 @@ class HeaderView: UITableViewCell {
     }
 
     private func cellAttributes() {
-        backgroundColor = .tccBlack
+        backgroundColor = .red
         textLabel?.textColor = .white
         textLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         textLabel?.textAlignment = .center

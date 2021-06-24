@@ -36,7 +36,7 @@ class InitialView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            scanText.centerYAnchor.constraint(equalTo: centerYAnchor, constant: frame.height * -0.2),
+            scanText.centerYAnchor.constraint(equalTo: centerYAnchor, constant: frame.height * -0.25),
             scanText.centerXAnchor.constraint(equalTo: centerXAnchor),
             scanText.widthAnchor.constraint(equalToConstant: frame.width * 0.8)
         ])
@@ -52,7 +52,7 @@ class InitialView: UIView {
     }
     
     private func setupScanText() {
-        scanText.text = "Clique para escanear"
+        scanText.text = "Começar contagem"
         scanText.numberOfLines = .zero
         scanText.textColor = .white
         scanText.font = UIFont.boldSystemFont(ofSize: 30)

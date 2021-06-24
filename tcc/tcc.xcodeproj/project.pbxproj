@@ -28,6 +28,7 @@
 		83C7CD50266EC9A000D9DC51 /* BankNoteRecognization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C7CD4F266EC9A000D9DC51 /* BankNoteRecognization.swift */; };
 		83C7CD54266ECA1D00D9DC51 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C7CD53266ECA1D00D9DC51 /* Protocols.swift */; };
 		83C7CD56266ECDB200D9DC51 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C7CD55266ECDB200D9DC51 /* WalletViewController.swift */; };
+		83D841D12683D95D00504357 /* MyImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83D841D02683D95D00504357 /* MyImageClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		83C7CD4F266EC9A000D9DC51 /* BankNoteRecognization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNoteRecognization.swift; sourceTree = "<group>"; };
 		83C7CD53266ECA1D00D9DC51 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		83C7CD55266ECDB200D9DC51 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		83D841D02683D95D00504357 /* MyImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MyImageClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		837416C826697F6500EF8BB3 /* tcc */ = {
 			isa = PBXGroup;
 			children = (
+				83D841D02683D95D00504357 /* MyImageClassifier.mlmodel */,
 				8350C6082682991C008F289B /* FlowerShop.mlmodel */,
 				838C95632673E4F4003D6B96 /* Presenter */,
 				83C7CD51266ECA0C00D9DC51 /* Protocols */,
@@ -244,6 +247,7 @@
 				8338F6E82672A442005FCD7A /* WalletView.swift in Sources */,
 				838C956926765FBD003D6B96 /* SingleAmountTableCell.swift in Sources */,
 				83C7CD54266ECA1D00D9DC51 /* Protocols.swift in Sources */,
+				83D841D12683D95D00504357 /* MyImageClassifier.mlmodel in Sources */,
 				8350C6092682991C008F289B /* FlowerShop.mlmodel in Sources */,
 				8381CD2826781C41007B7686 /* BankNote.swift in Sources */,
 				837416CE26697F6500EF8BB3 /* InitialViewController.swift in Sources */,
