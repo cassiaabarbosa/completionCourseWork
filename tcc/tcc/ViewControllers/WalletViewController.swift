@@ -4,6 +4,7 @@ final class WalletViewController: UIViewController {
     
     private var coordinator: Coordinator
     private var addedAmount: Int
+    private var addedPercentage: String
     private let contentView: WalletView
     private let presenter: WalletPresenter
     
@@ -18,6 +19,7 @@ final class WalletViewController: UIViewController {
     
     init(coordinator: Coordinator,
          addedAmount: Int,
+         addedPercentage: String,
          contentView: WalletView = WalletView(),
          presenter:WalletPresenter = WalletPresenter()) {
         self.coordinator = coordinator
@@ -25,6 +27,7 @@ final class WalletViewController: UIViewController {
         self.contentView = contentView
         self.coordinator = coordinator
         self.presenter = presenter
+        self.addedPercentage = addedPercentage
         super.init(nibName: nil, bundle: nil)
         super.view = contentView
         setupPickerAddPhotoButton()
@@ -88,6 +91,7 @@ extension WalletViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: {
+            self.contentView.showLoading()
             let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
             self.coordinator.recognization?.goToWallet(image: image)
         })
@@ -95,8 +99,10 @@ extension WalletViewController: UIImagePickerControllerDelegate, UINavigationCon
 }
 
 extension WalletViewController: ViewControllerDelegate {
-    func goToWallet(with amount: Int) {
+    func goToWallet(amount: Int, percentage: String) {
         updateAmountValue(amount: amount)
+        addedPercentage = percentage
+        contentView.hideLoading()
     }
 }
 
@@ -104,23 +110,31 @@ extension WalletViewController: UITableViewDelegate {}
 
 extension WalletViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.cells.count + 1
+        return presenter.cells.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: HeaderView.id, for: indexPath) as? HeaderView else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HeaderTableCell.id, for: indexPath) as? HeaderTableCell else {
                 return UITableViewCell()
             }
-            cell.show(text: "A quantia total é de R$ \(presenter.getTotalAmount())")
+            cell.show(text: "A nota identificada é de R$ \(addedAmount),00",
+                      detailText: "Há \(addedPercentage)% de chance de acerto")
             cell.selectionStyle = .none
             return cell
+        } else if indexPath.row == 1 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SummationTableCell.id, for: indexPath) as? SummationTableCell else {
+                    return UITableViewCell()
+                }
+                cell.show(text: "A quantia total é de R$ \(presenter.getTotalAmount())")
+                cell.selectionStyle = .none
+                return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SingleAmountTableCell.id, for: indexPath) as? SingleAmountTableCell else {
                 return UITableViewCell()
             }
-            cell.show(value: presenter.cells[indexPath.row - 1].value,
-                      amount: presenter.cells[indexPath.row - 1].amount)
+            cell.show(value: presenter.cells[indexPath.row - 2].value,
+                      amount: presenter.cells[indexPath.row - 2].amount)
             cell.selectionStyle = .none
             return cell
         }

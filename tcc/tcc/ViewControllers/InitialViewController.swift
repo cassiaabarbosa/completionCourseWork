@@ -5,7 +5,6 @@ final class InitialViewController: UIViewController {
     
     private var coordinator: Coordinator
     private let contentView: InitialView
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return  .lightContent
     }
@@ -28,7 +27,7 @@ final class InitialViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        contentView.resteScanButtonAffineTransform()
+        contentView.resetScanButtonAffineTransform()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,7 +45,7 @@ final class InitialViewController: UIViewController {
     private func bindActions() {
         contentView.didTapScanButton = didTapScanButton
     }
-
+ 
     private func didTapScanButton() {
         coordinator.openCamera()
     }
@@ -60,6 +59,7 @@ final class InitialViewController: UIViewController {
 extension InitialViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             picker.dismiss(animated: true, completion: {
+                self.contentView.showLoading()
                 let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
                 self.coordinator.recognization?.goToWallet(image: image)
             })
@@ -67,7 +67,8 @@ extension InitialViewController: UIImagePickerControllerDelegate, UINavigationCo
 }
 
 extension InitialViewController: ViewControllerDelegate {
-    func goToWallet(with amount: Int) {
-        coordinator.goToWalletViewController(with: amount)
+    func goToWallet(amount: Int, percentage: String) {
+        coordinator.goToWalletViewController(with: amount, percentage: percentage)
+        contentView.hideLoading()
     }
 }

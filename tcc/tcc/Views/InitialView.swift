@@ -4,6 +4,8 @@ class InitialView: UIView {
     
     @TemplateView var scanButton: ScanButton
     @TemplateView var scanText: UILabel
+    @TemplateView var loadingIndicator: UIActivityIndicatorView
+    @TemplateView var gradient: UIView
     
     var didTapScanButton: (() -> Void)?
     
@@ -14,6 +16,8 @@ class InitialView: UIView {
         setupScanButton()
         setupScanText()
         bindActions()
+        setupLoadingIndicator()
+        setupGradient()
         backgroundColor = .tccBlack
     }
     
@@ -25,6 +29,8 @@ class InitialView: UIView {
     private func buildViewHierarchy() {
         addSubview(scanButton)
         addSubview(scanText)
+        addSubview(gradient)
+        addSubview(loadingIndicator)
     }
     
     private func applyConstraints() {
@@ -40,6 +46,32 @@ class InitialView: UIView {
             scanText.centerXAnchor.constraint(equalTo: centerXAnchor),
             scanText.widthAnchor.constraint(equalToConstant: frame.width * 0.8)
         ])
+        
+        NSLayoutConstraint.activate([
+            gradient.leadingAnchor.constraint(equalTo: leadingAnchor),
+            gradient.trailingAnchor.constraint(equalTo: trailingAnchor),
+            gradient.bottomAnchor.constraint(equalTo: bottomAnchor),
+            gradient.topAnchor.constraint(equalTo: topAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loadingIndicator.widthAnchor.constraint(equalToConstant: frame.width * 0.2),
+            loadingIndicator.heightAnchor.constraint(equalToConstant: frame.width * 0.2)
+        ])
+    }
+    
+    private func setupLoadingIndicator() {
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = .large
+        loadingIndicator.color = .white
+        loadingIndicator.isHidden = true
+    }
+    
+    private func setupGradient() {
+        gradient.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        gradient.isHidden = true
     }
     
     private func setupScanButton() {
@@ -64,7 +96,7 @@ class InitialView: UIView {
         scanButton.didTap = didTapScanButton
     }
     
-    func resteScanButtonAffineTransform() {
+    func resetScanButtonAffineTransform() {
         scanButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
     }
     
@@ -76,5 +108,16 @@ class InitialView: UIView {
                         self.scanButton.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
                        },
                        completion:  nil)
+    }
+    
+    func showLoading() {
+        loadingIndicator.startAnimating()
+        loadingIndicator.isHidden = false
+        gradient.isHidden = false
+    }
+
+    func hideLoading() {
+        loadingIndicator.stopAnimating()
+        gradient.isHidden = true
     }
 }

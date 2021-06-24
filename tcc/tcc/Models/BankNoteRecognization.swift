@@ -47,6 +47,10 @@ class BankNoteRecognization {
         else if identifier == "200reais" { return RealBankNote.twoHundred }
         else { return RealBankNote.zero }
     }
+    
+    private func translate(confidence: Float) -> String {
+        return String(round(confidence * 1000) / 10.0).replacingOccurrences(of: ".", with: ",")
+    }
 
     lazy var classificationRequest: VNCoreMLRequest = {
         do {
@@ -66,7 +70,7 @@ class BankNoteRecognization {
     func updateClassifications(for image: UIImage) {
         
         let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
+        guard let ciImage = CIImage(image: image) else {return}
         
         DispatchQueue.global(qos: .userInitiated).async {
             let handler = VNImageRequestHandler(ciImage: ciImage, orientation: orientation)
@@ -74,7 +78,7 @@ class BankNoteRecognization {
                 try handler.perform([self.classificationRequest])
             } catch {
                 print("Failed to perform classification.\n\(error.localizedDescription)")
-                self.delegate?.goToWallet(with: self.doRecognization(identifier: "zero"))
+                self.delegate?.goToWallet(amount: self.doRecognization(identifier: "zero"), percentage: "")
             }
         }
     }
@@ -83,38 +87,17 @@ class BankNoteRecognization {
     func processClassifications(for request: VNRequest, error: Error?) {
         DispatchQueue.main.async { [self] in
             guard let results = request.results else {
-                print("Unable to classify image.\n\(error!.localizedDescription)")
-                delegate?.goToWallet(with: self.doRecognization(identifier: "zero"))
+                print("Unable to classify image.\n\(String(describing: error?.localizedDescription))")
+                delegate?.goToWallet(amount: self.doRecognization(identifier: "zero"), percentage: "")
                 return
             }
-            let classifications = results as! [VNClassificationObservation]
-            
-            if classifications.isEmpty {
-                print("Unable to classify image.\n\(error!.localizedDescription)")
-                delegate?.goToWallet(with: self.doRecognization(identifier: "zero"))
+            if results.isEmpty {
+                print("Unable to classify image.\n\(String(describing: error?.localizedDescription))")
+                delegate?.goToWallet(amount: self.doRecognization(identifier: "zero"), percentage: "")
             } else {
-                let topClassification = classifications[0]
-
-                print("Classification: " + topClassification.identifier)
-                delegate?.goToWallet(with: self.doRecognization(identifier: topClassification.identifier))
+                let topClassification = results[0]
+                delegate?.goToWallet(amount: self.doRecognization(identifier: (topClassification as AnyObject).identifier ?? "0"), percentage: translate(confidence: Float((topClassification as AnyObject).confidence ?? 0)))
             }
-        }
-    }
-}
-
-extension CGImagePropertyOrientation {
-    init(_ orientation: UIImage.Orientation) {
-        switch orientation {
-        case .up: self = .up
-        case .upMirrored: self = .upMirrored
-        case .down: self = .down
-        case .downMirrored: self = .downMirrored
-        case .left: self = .left
-        case .leftMirrored: self = .leftMirrored
-        case .right: self = .right
-        case .rightMirrored: self = .rightMirrored
-        @unknown default:
-            fatalError()
         }
     }
 }

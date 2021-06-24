@@ -17,11 +17,14 @@ class SingleAmountTableCell: UITableViewCell {
     }
     
     private func cellAttributes() {
-        backgroundColor = .red
+        backgroundColor = .tccBlack
         textLabel?.textColor = .white
-        textLabel?.textAlignment = .center
-        textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        textLabel?.numberOfLines = 0
+        textLabel?.textAlignment = .left
+        textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        textLabel?.numberOfLines = 1
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalToConstant: 20)
+        ])
     }
     
     func show(value: Int, amount: Int) {

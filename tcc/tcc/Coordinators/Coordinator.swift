@@ -29,9 +29,10 @@ final class Coordinator {
                                        completion: nil)
     }
     
-    func goToWalletViewController(with amount: Int) {
+    func goToWalletViewController(with amount: Int, percentage: String) {
         let viewController = WalletViewController(coordinator: self,
-                                                  addedAmount: amount)
+                                                  addedAmount: amount,
+                                                  addedPercentage: percentage)
         currentViewController = viewController
         navigationController.pushViewController(viewController,
                                                 animated: true)
