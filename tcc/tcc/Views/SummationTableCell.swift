@@ -1,6 +1,6 @@
 import UIKit
 
-class HeaderView: UITableViewCell {
+class SummationTableCell: UITableViewCell {
     
     static var id: String {
         return String(describing: self)
@@ -19,8 +19,12 @@ class HeaderView: UITableViewCell {
     private func cellAttributes() {
         backgroundColor = .tccBlack
         textLabel?.textColor = .white
-        textLabel?.font = UIFont.boldSystemFont(ofSize: 22)
-        textLabel?.textAlignment = .center
+        textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        textLabel?.numberOfLines = 0
+        textLabel?.textAlignment = .left
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalToConstant: 70)
+        ])
     }
 
     func show(text: String) {

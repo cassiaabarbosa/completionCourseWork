@@ -10,6 +10,15 @@ class WalletPresenter {
         adapt(amounts: filterAmounts())
     }
     
+    func removeOcurrence(amount: Int) {
+        for index in 0..<amounts.count {
+            if amounts[index] == amount {
+                amounts.remove(at: index)
+                break
+            }
+        }
+    }
+    
     func getTotalAmount() -> String {
         let totalAmount = amounts.reduce(0, +)
         let totalString = String(totalAmount) + ",00"

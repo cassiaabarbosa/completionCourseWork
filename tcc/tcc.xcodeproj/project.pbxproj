@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8338F6E6267280CE005FCD7A /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8338F6E5267280CE005FCD7A /* InitialView.swift */; };
 		8338F6E82672A442005FCD7A /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8338F6E72672A442005FCD7A /* WalletView.swift */; };
+		834B3B282684C7ED00522F9B /* HeaderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B3B272684C7ED00522F9B /* HeaderTableCell.swift */; };
+		834B3B2A2684FE2200522F9B /* CGImagePropertyOrientation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B3B292684FE2200522F9B /* CGImagePropertyOrientation+Ext.swift */; };
 		8350C6092682991C008F289B /* FlowerShop.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8350C6082682991C008F289B /* FlowerShop.mlmodel */; };
 		837416CA26697F6500EF8BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837416C926697F6500EF8BB3 /* AppDelegate.swift */; };
 		837416CC26697F6500EF8BB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837416CB26697F6500EF8BB3 /* SceneDelegate.swift */; };
@@ -16,7 +18,7 @@
 		837416D326697F6700EF8BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837416D226697F6700EF8BB3 /* Assets.xcassets */; };
 		837416D626697F6700EF8BB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 837416D426697F6700EF8BB3 /* LaunchScreen.storyboard */; };
 		8381CD2826781C41007B7686 /* BankNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381CD2726781C41007B7686 /* BankNote.swift */; };
-		8381CD2A26796C42007B7686 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381CD2926796C42007B7686 /* HeaderView.swift */; };
+		8381CD2A26796C42007B7686 /* SummationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381CD2926796C42007B7686 /* SummationTableCell.swift */; };
 		838C95652673E50A003D6B96 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C95642673E50A003D6B96 /* WalletPresenter.swift */; };
 		838C956926765FBD003D6B96 /* SingleAmountTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C956826765FBD003D6B96 /* SingleAmountTableCell.swift */; };
 		83A27E852669837100D169E6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A27E842669837100D169E6 /* Coordinator.swift */; };
@@ -28,11 +30,14 @@
 		83C7CD50266EC9A000D9DC51 /* BankNoteRecognization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C7CD4F266EC9A000D9DC51 /* BankNoteRecognization.swift */; };
 		83C7CD54266ECA1D00D9DC51 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C7CD53266ECA1D00D9DC51 /* Protocols.swift */; };
 		83C7CD56266ECDB200D9DC51 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C7CD55266ECDB200D9DC51 /* WalletViewController.swift */; };
+		83D841D12683D95D00504357 /* MyImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83D841D02683D95D00504357 /* MyImageClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8338F6E5267280CE005FCD7A /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		8338F6E72672A442005FCD7A /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		834B3B272684C7ED00522F9B /* HeaderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableCell.swift; sourceTree = "<group>"; };
+		834B3B292684FE2200522F9B /* CGImagePropertyOrientation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Ext.swift"; sourceTree = "<group>"; };
 		8350C6082682991C008F289B /* FlowerShop.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerShop.mlmodel; sourceTree = "<group>"; };
 		837416C626697F6500EF8BB3 /* tcc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tcc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837416C926697F6500EF8BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +47,7 @@
 		837416D526697F6700EF8BB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		837416D726697F6700EF8BB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8381CD2726781C41007B7686 /* BankNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNote.swift; sourceTree = "<group>"; };
-		8381CD2926796C42007B7686 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		8381CD2926796C42007B7686 /* SummationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummationTableCell.swift; sourceTree = "<group>"; };
 		838C95642673E50A003D6B96 /* WalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
 		838C956826765FBD003D6B96 /* SingleAmountTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleAmountTableCell.swift; sourceTree = "<group>"; };
 		83A27E842669837100D169E6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 		83C7CD4F266EC9A000D9DC51 /* BankNoteRecognization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankNoteRecognization.swift; sourceTree = "<group>"; };
 		83C7CD53266ECA1D00D9DC51 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		83C7CD55266ECDB200D9DC51 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		83D841D02683D95D00504357 /* MyImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MyImageClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 		837416C826697F6500EF8BB3 /* tcc */ = {
 			isa = PBXGroup;
 			children = (
+				83D841D02683D95D00504357 /* MyImageClassifier.mlmodel */,
 				8350C6082682991C008F289B /* FlowerShop.mlmodel */,
 				838C95632673E4F4003D6B96 /* Presenter */,
 				83C7CD51266ECA0C00D9DC51 /* Protocols */,
@@ -126,6 +133,7 @@
 				83A27E872669868C00D169E6 /* UIColor+Ext.swift */,
 				83A27E8E2669960C00D169E6 /* TemplateView.swift */,
 				83C7CD4B266D594C00D9DC51 /* UIViewController + UIViewControllerRepresentable.swift */,
+				834B3B292684FE2200522F9B /* CGImagePropertyOrientation+Ext.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -137,7 +145,8 @@
 				8338F6E5267280CE005FCD7A /* InitialView.swift */,
 				8338F6E72672A442005FCD7A /* WalletView.swift */,
 				838C956826765FBD003D6B96 /* SingleAmountTableCell.swift */,
-				8381CD2926796C42007B7686 /* HeaderView.swift */,
+				8381CD2926796C42007B7686 /* SummationTableCell.swift */,
+				834B3B272684C7ED00522F9B /* HeaderTableCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,17 +247,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A27E852669837100D169E6 /* Coordinator.swift in Sources */,
-				8381CD2A26796C42007B7686 /* HeaderView.swift in Sources */,
+				8381CD2A26796C42007B7686 /* SummationTableCell.swift in Sources */,
 				83A27E8F2669960C00D169E6 /* TemplateView.swift in Sources */,
 				83C7CD50266EC9A000D9DC51 /* BankNoteRecognization.swift in Sources */,
 				8338F6E82672A442005FCD7A /* WalletView.swift in Sources */,
 				838C956926765FBD003D6B96 /* SingleAmountTableCell.swift in Sources */,
 				83C7CD54266ECA1D00D9DC51 /* Protocols.swift in Sources */,
+				83D841D12683D95D00504357 /* MyImageClassifier.mlmodel in Sources */,
 				8350C6092682991C008F289B /* FlowerShop.mlmodel in Sources */,
 				8381CD2826781C41007B7686 /* BankNote.swift in Sources */,
 				837416CE26697F6500EF8BB3 /* InitialViewController.swift in Sources */,
+				834B3B2A2684FE2200522F9B /* CGImagePropertyOrientation+Ext.swift in Sources */,
 				83C7CD56266ECDB200D9DC51 /* WalletViewController.swift in Sources */,
 				83A27E882669868C00D169E6 /* UIColor+Ext.swift in Sources */,
+				834B3B282684C7ED00522F9B /* HeaderTableCell.swift in Sources */,
 				838C95652673E50A003D6B96 /* WalletPresenter.swift in Sources */,
 				837416CA26697F6500EF8BB3 /* AppDelegate.swift in Sources */,
 				8338F6E6267280CE005FCD7A /* InitialView.swift in Sources */,
