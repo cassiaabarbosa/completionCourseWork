@@ -20,15 +20,19 @@ class HeaderTableCell: UITableViewCell {
         backgroundColor = .tccBlack
         textLabel?.textColor = .white
         textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        textLabel?.textAlignment = .left
+        textLabel?.textAlignment = .center
+        textLabel?.accessibilityTraits = .header
         detailTextLabel?.textColor = .white
         detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         detailTextLabel?.textAlignment = .left
         detailTextLabel?.numberOfLines = 0
+        detailTextLabel?.accessibilityTraits = .staticText
+        
     }
 
     func show(text: String, detailText: String) {
         textLabel?.text = text
         detailTextLabel?.text = detailText
+        
     }
 }

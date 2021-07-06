@@ -14,6 +14,7 @@ class ScanButton: UIButton {
         super.init(frame: .zero)
         buildViewHierarchy()
         applyConstraints()
+        setupAcessibility()
         addAction(.init(handler: {_ in
             self.didTap?()
         }), for: .touchUpInside)
@@ -76,6 +77,10 @@ class ScanButton: UIButton {
         logoView.isUserInteractionEnabled = false
     }
     
+    private func setupAcessibility(){
+        self.accessibilityTraits = .button
+        self.accessibilityLabel = "Escanear notas"
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

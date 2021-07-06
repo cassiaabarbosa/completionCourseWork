@@ -85,6 +85,7 @@ class InitialView: UIView {
     
     private func setupScanText() {
         scanText.text = "Começar contagem"
+        scanText.accessibilityTraits = .header
         scanText.numberOfLines = .zero
         scanText.textColor = .white
         scanText.font = UIFont.boldSystemFont(ofSize: 30)

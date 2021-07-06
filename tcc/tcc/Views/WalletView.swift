@@ -63,25 +63,25 @@ class WalletView: UIView {
         
         NSLayoutConstraint.activate([
             repeatScan.bottomAnchor.constraint(equalTo: nextScan.topAnchor,
-                                            constant: (frame.height * -0.05)),
-            repeatScan.heightAnchor.constraint(equalToConstant: 50),
-            repeatScan.widthAnchor.constraint(equalToConstant: 170),
+                                            constant: -20),
+            repeatScan.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/10),
+            repeatScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
             repeatScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
             nextScan.bottomAnchor.constraint(equalTo: newScan.topAnchor,
-                                            constant: (frame.height * -0.05)),
-            nextScan.heightAnchor.constraint(equalToConstant: 50),
-            nextScan.widthAnchor.constraint(equalToConstant: 170),
+                                            constant: -20),
+            nextScan.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/10),
+            nextScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
             nextScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
         NSLayoutConstraint.activate([
             newScan.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                            constant: (frame.height * -0.05)),
-            newScan.heightAnchor.constraint(equalToConstant: 50),
-            newScan.widthAnchor.constraint(equalToConstant: 170),
+                                            constant: -32),
+            newScan.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/10),
+            newScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
             newScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
@@ -115,6 +115,8 @@ class WalletView: UIView {
     private func setupWhatToDo() {
         whatToDo.text = "O que deseja fazer?"
         whatToDo.font = UIFont.boldSystemFont(ofSize: 20)
+        whatToDo.accessibilityTraits = .header
+        whatToDo.accessibilityLabel = whatToDo.text
         whatToDo.textAlignment = .left
         whatToDo.textColor = .white
     }
@@ -124,7 +126,7 @@ class WalletView: UIView {
                             for: .normal)
         repeatScan.titleLabel?.lineBreakMode = .byWordWrapping
         repeatScan.titleLabel?.textAlignment = .center
-        repeatScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        repeatScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         repeatScan.layer.cornerRadius = 10
         repeatScan.backgroundColor = .tccSmallerViewBackground
         repeatScan.addAction(UIAction(handler: {(_) in
@@ -135,9 +137,11 @@ class WalletView: UIView {
     private func setupNextScan() {
         nextScan.setTitle("Continuar contagem", // na acassibilidade, seria bom que falasse além do nome do botão, "Uma nova nota deverá ser reconhecida."
                          for: .normal)
+        nextScan.accessibilityTraits = .button
+        nextScan.accessibilityLabel = "Continuar contagem, escanear uma nova nota"
         nextScan.titleLabel?.lineBreakMode = .byWordWrapping
         nextScan.titleLabel?.textAlignment = .center
-        nextScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        nextScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         nextScan.layer.cornerRadius = 10
         nextScan.backgroundColor = .tccSmallerViewBackground
         nextScan.addAction(UIAction(handler: {(_) in
@@ -150,7 +154,7 @@ class WalletView: UIView {
                          for: .normal)
         newScan.titleLabel?.lineBreakMode = .byWordWrapping
         newScan.titleLabel?.textAlignment = .center
-        newScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        newScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         newScan.layer.cornerRadius = 10
         newScan.backgroundColor = .tccSmallerViewBackground
         newScan.addAction(UIAction(handler: {(_) in
