@@ -14,6 +14,7 @@ final class InitialViewController: UIViewController {
         self.coordinator = coordinator
         self.contentView = contentView
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {

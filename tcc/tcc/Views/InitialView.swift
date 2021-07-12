@@ -19,6 +19,7 @@ class InitialView: UIView {
         setupLoadingIndicator()
         setupGradient()
         backgroundColor = .tccBlack
+        setupAcessibility()
     }
     
     @available(*, unavailable)
@@ -67,6 +68,10 @@ class InitialView: UIView {
         loadingIndicator.style = .large
         loadingIndicator.color = .white
         loadingIndicator.isHidden = true
+    }
+    
+    private func setupAcessibility (){
+        self.accessibilityElements = [scanText,scanButton]
     }
     
     private func setupGradient() {

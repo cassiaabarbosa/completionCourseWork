@@ -162,6 +162,11 @@ class WalletView: UIView {
         }), for: .touchUpInside)
     }
     
+    
+    private func setupAcessibility (){
+        self.accessibilityElements = [tableView,whatToDo,repeatScan,nextScan,newScan]
+    }
+    
     private func setTableviewHeight() {
         if (tableView.contentSize.height + 30) < (safeAreaLayoutGuide.layoutFrame.height * 0.5) {
             heightConstraint?.constant = tableView.contentSize.height + 30
