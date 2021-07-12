@@ -20,7 +20,7 @@ class HeaderTableCell: UITableViewCell {
         backgroundColor = .tccBlack
         textLabel?.textColor = .white
         textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        textLabel?.textAlignment = .center
+        textLabel?.textAlignment = .left
         textLabel?.accessibilityTraits = .header
         detailTextLabel?.textColor = .white
         detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 16)

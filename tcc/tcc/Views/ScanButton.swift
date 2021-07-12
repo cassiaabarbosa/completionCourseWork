@@ -72,7 +72,7 @@ class ScanButton: UIButton {
     }
     
     private func setupLogoView() {
-        logoView.image = UIImage()
+        logoView.image = UIImage(named: "eyeLogo")
         logoView.backgroundColor = .red
         logoView.isUserInteractionEnabled = false
     }

@@ -30,10 +30,10 @@ class SingleAmountTableCell: UITableViewCell {
     func show(value: Int, amount: Int) {
         if amount > 1 {
             self.textLabel?.text = "Há \(amount) notas de R$ \(value),00"
-            self.textLabel?.textAlignment = .center
+            self.textLabel?.textAlignment = .left
         } else {
             self.textLabel?.text = "Há \(amount) nota de R$ \(value),00"
-            self.textLabel?.textAlignment = .center
+            self.textLabel?.textAlignment = .left
         }
     }
 }

@@ -29,6 +29,6 @@ class SummationTableCell: UITableViewCell {
 
     func show(text: String) {
         textLabel?.text = text
-        textLabel?.textAlignment = .center
+        textLabel?.textAlignment = .left
     }
 }
