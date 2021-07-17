@@ -69,7 +69,6 @@ final class WalletViewController: UIViewController {
     
     private func setupTableViewObjects() {
         contentView.tableViewDataSource = self
-        contentView.tableViewDelegate = self
         contentView.setupTableView()
     }
     
@@ -105,8 +104,6 @@ extension WalletViewController: ViewControllerDelegate {
         contentView.hideLoading()
     }
 }
-
-extension WalletViewController: UITableViewDelegate {}
 
 extension WalletViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

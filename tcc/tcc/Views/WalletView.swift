@@ -16,7 +16,6 @@ class WalletView: UIView {
     var didTapRepeatScan: (() -> Void)?
     var didTapNewScan: (() -> Void)?
     
-    var tableViewDelegate: UITableViewDelegate?
     var tableViewDataSource: UITableViewDataSource?
     
     override init(frame: CGRect) {
@@ -189,7 +188,6 @@ class WalletView: UIView {
     func setupTableView() {
         tableView.backgroundColor = .tccBlack
         tableView.separatorColor = .clear
-        tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
         tableView.register(SingleAmountTableCell.self,
                            forCellReuseIdentifier: SingleAmountTableCell.id)
