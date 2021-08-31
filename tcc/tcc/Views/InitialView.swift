@@ -81,8 +81,7 @@ class InitialView: UIView {
     
     private func setupScanButton() {
         scanButton.clipsToBounds = true
-        scanButton.layer.cornerRadius = (frame.width * 0.7) / 2
-        scanButton.setImage(UIImage(named: "colocar a imagem"), for: .normal)
+//        scanButton.layer.cornerRadius = (frame.width * 0.7) / 2
         scanButton.addAction(UIAction(handler: {(_) in
             self.didTapScanButton?()
         }), for: .touchUpInside)

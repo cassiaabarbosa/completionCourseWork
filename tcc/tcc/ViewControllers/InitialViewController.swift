@@ -29,6 +29,7 @@ final class InitialViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         contentView.resetScanButtonAffineTransform()
+        contentView.hideLoading()
     }
     
     override func viewDidAppear(_ animated: Bool) {

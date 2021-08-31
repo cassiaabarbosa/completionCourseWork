@@ -115,7 +115,7 @@ class WalletView: UIView {
     private func setupWhatToDo() {
         whatToDo.text = "O que deseja fazer?"
         whatToDo.font = UIFont.boldSystemFont(ofSize: 20)
-        whatToDo.accessibilityTraits = .header
+        whatToDo.accessibilityTraits = .staticText
         whatToDo.accessibilityLabel = whatToDo.text
         whatToDo.textAlignment = .left
         whatToDo.textColor = .white

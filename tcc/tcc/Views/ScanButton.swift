@@ -25,7 +25,7 @@ class ScanButton: UIButton {
         setupBiggerView()
         setupSmallerView()
         setupLogoView()
-        self.backgroundColor = .blue
+        self.backgroundColor = .clear
     }
     
     private func buildViewHierarchy() {
@@ -72,14 +72,13 @@ class ScanButton: UIButton {
     }
     
     private func setupLogoView() {
-        logoView.image = UIImage(named: "eyeLogo")
-        logoView.backgroundColor = .red
+        logoView.image = UIImage(named: "triangle")
         logoView.isUserInteractionEnabled = false
     }
     
-    private func setupAcessibility(){
+    private func setupAcessibility() {
         self.accessibilityTraits = .button
-        self.accessibilityLabel = "Escanear notas"
+        self.accessibilityLabel = "Clique para escanear as notas."
     }
     
     required init?(coder: NSCoder) {

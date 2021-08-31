@@ -4,8 +4,7 @@ import UIKit
 final class Coordinator {
     private var navigationController: LightNavigationController
     private var rootViewController: UIViewController?
-    private var currentViewController: UIViewController?
-    
+    var currentViewController: UIViewController?
     var recognization: BankNoteRecognization?
     var pickerAddPhoto = UIImagePickerController()
     
@@ -33,6 +32,7 @@ final class Coordinator {
         let viewController = WalletViewController(coordinator: self,
                                                   addedAmount: amount,
                                                   addedPercentage: percentage)
+        
         currentViewController = viewController
         navigationController.pushViewController(viewController,
                                                 animated: true)
