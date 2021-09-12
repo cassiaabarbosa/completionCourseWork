@@ -82,7 +82,6 @@ final class BankNoteRecognization {
                                      percentage: "")
             } else {
                 let topClassification = results[0]
-                print(topClassification)
                 delegate?.goToWallet(amount: self.doRecognization(identifier: (topClassification as AnyObject).identifier ?? "0"),
                                      percentage: adapter.translate(confidence: Float((topClassification as AnyObject).confidence ?? 0)))
             }
