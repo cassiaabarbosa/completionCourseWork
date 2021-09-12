@@ -19,7 +19,9 @@ class HeaderTableCell: UITableViewCell {
     private func cellAttributes() {
         backgroundColor = .tccBlack
         textLabel?.textColor = .white
-        textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        textLabel?.numberOfLines = 0
+        textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+        textLabel?.adjustsFontForContentSizeCategory = true
         textLabel?.textAlignment = .left
         textLabel?.accessibilityTraits = .header
         detailTextLabel?.textColor = .white
@@ -27,7 +29,8 @@ class HeaderTableCell: UITableViewCell {
         detailTextLabel?.textAlignment = .left
         detailTextLabel?.numberOfLines = 0
         detailTextLabel?.accessibilityTraits = .staticText
-        
+        detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+        detailTextLabel?.adjustsFontForContentSizeCategory = true
     }
 
     func show(text: String, detailText: String) {

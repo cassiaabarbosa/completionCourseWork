@@ -2,7 +2,6 @@ import UIKit
 
 class WalletView: UIView {
     
-    @TemplateView var whatToDo: UILabel
     @TemplateView var repeatScan: UIButton
     @TemplateView var nextScan: UIButton
     @TemplateView var newScan: UIButton
@@ -10,7 +9,6 @@ class WalletView: UIView {
     @TemplateView var loadingIndicator: UIActivityIndicatorView
     @TemplateView var gradient: UIView
     
-    private var heightConstraint: NSLayoutConstraint?
     
     var didTapNextScan: (() -> Void)?
     var didTapRepeatScan: (() -> Void)?
@@ -23,7 +21,6 @@ class WalletView: UIView {
         super.init(frame: UIScreen.main.bounds)
         buildViewHierarchy()
         applyConstraints()
-        setupWhatToDo()
         setupNewScan()
         setupNextScan()
         setupRepeatScan()
@@ -39,7 +36,6 @@ class WalletView: UIView {
     
     private func buildViewHierarchy() {
         addSubview(tableView)
-        addSubview(whatToDo)
         addSubview(repeatScan)
         addSubview(nextScan)
         addSubview(newScan)
@@ -48,24 +44,17 @@ class WalletView: UIView {
     }
     
     private func applyConstraints() {
-        heightConstraint = tableView.heightAnchor.constraint(equalToConstant: 160)
         NSLayoutConstraint.activate([
-            tableView.bottomAnchor.constraint(equalTo: repeatScan.topAnchor, constant: -100),
-            heightConstraint!,
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 32),
+            tableView.bottomAnchor.constraint(equalTo: repeatScan.topAnchor, constant: -32),
             tableView.widthAnchor.constraint(equalToConstant: frame.width)
-        ])
-
-        NSLayoutConstraint.activate([
-            whatToDo.bottomAnchor.constraint(equalTo: repeatScan.topAnchor,
-                                             constant: (frame.height * -0.025)),
-            whatToDo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: (frame.width * 0.05))
         ])
         
         NSLayoutConstraint.activate([
             repeatScan.bottomAnchor.constraint(equalTo: nextScan.topAnchor,
                                             constant: -20),
             repeatScan.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/10),
-            repeatScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
+            repeatScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.8),
             repeatScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
@@ -73,7 +62,7 @@ class WalletView: UIView {
             nextScan.bottomAnchor.constraint(equalTo: newScan.topAnchor,
                                             constant: -20),
             nextScan.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/10),
-            nextScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
+            nextScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.8),
             nextScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
@@ -81,7 +70,7 @@ class WalletView: UIView {
             newScan.bottomAnchor.constraint(equalTo: bottomAnchor,
                                             constant: -32),
             newScan.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/10),
-            newScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
+            newScan.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.8),
             newScan.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
@@ -112,21 +101,14 @@ class WalletView: UIView {
         gradient.isHidden = true
     }
     
-    private func setupWhatToDo() {
-        whatToDo.text = "O que deseja fazer?"
-        whatToDo.font = UIFont.boldSystemFont(ofSize: 20)
-        whatToDo.accessibilityTraits = .staticText
-        whatToDo.accessibilityLabel = whatToDo.text
-        whatToDo.textAlignment = .left
-        whatToDo.textColor = .white
-    }
-    
     private func setupRepeatScan() {
         repeatScan.setTitle("Fotografar novamente", // na acassibilidade, seria bom que falasse além do nome do botão, "O valor da nota recém reconhecida será desconsiderado."
                             for: .normal)
+        repeatScan.accessibilityLabel = "Fotografar novamente a mesma nota? O valor da nota recém reconhecida será desconsiderado."
         repeatScan.titleLabel?.lineBreakMode = .byWordWrapping
         repeatScan.titleLabel?.textAlignment = .center
-        repeatScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        repeatScan.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        repeatScan.titleLabel?.adjustsFontForContentSizeCategory = true
         repeatScan.layer.cornerRadius = 10
         repeatScan.backgroundColor = .tccSmallerViewBackground
         repeatScan.addAction(UIAction(handler: {(_) in
@@ -138,10 +120,11 @@ class WalletView: UIView {
         nextScan.setTitle("Continuar contagem", // na acassibilidade, seria bom que falasse além do nome do botão, "Uma nova nota deverá ser reconhecida."
                          for: .normal)
         nextScan.accessibilityTraits = .button
-        nextScan.accessibilityLabel = "Continuar contagem, escanear uma nova nota"
+        nextScan.accessibilityLabel = "Fotografar uma nova nota para continuar a contagem?"
         nextScan.titleLabel?.lineBreakMode = .byWordWrapping
         nextScan.titleLabel?.textAlignment = .center
-        nextScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        nextScan.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        nextScan.titleLabel?.adjustsFontForContentSizeCategory = true
         nextScan.layer.cornerRadius = 10
         nextScan.backgroundColor = .tccSmallerViewBackground
         nextScan.addAction(UIAction(handler: {(_) in
@@ -150,11 +133,14 @@ class WalletView: UIView {
     }
     
     private func setupNewScan() {
-        newScan.setTitle("Encerrar contagem", // na acassibilidade, seria bom que falasse além do nome do botão, "Todos os valores serão apagados."
+        newScan.setTitle("Voltar para o início", // na acassibilidade, seria bom que falasse além do nome do botão, "Todos os valores serão apagados."
                          for: .normal)
+        newScan.accessibilityTraits = .button
+        newScan.accessibilityLabel = "Encerrar contagem e voltar para o início?"
         newScan.titleLabel?.lineBreakMode = .byWordWrapping
         newScan.titleLabel?.textAlignment = .center
-        newScan.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        newScan.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        newScan.titleLabel?.adjustsFontForContentSizeCategory = true
         newScan.layer.cornerRadius = 10
         newScan.backgroundColor = .tccSmallerViewBackground
         newScan.addAction(UIAction(handler: {(_) in
@@ -164,13 +150,11 @@ class WalletView: UIView {
     
     
     private func setupAcessibility (){
-        self.accessibilityElements = [tableView,whatToDo,repeatScan,nextScan,newScan]
+        self.accessibilityElements = [tableView,repeatScan,nextScan,newScan]
     }
     
     private func setTableviewHeight() {
-        if (tableView.contentSize.height + 30) < (safeAreaLayoutGuide.layoutFrame.height * 0.5) {
-            heightConstraint?.constant = tableView.contentSize.height + 30
-        } else {
+        if (tableView.contentSize.height) > (safeAreaLayoutGuide.layoutFrame.height * 0.3) {
             startTimerForShowScrollIndicator()
         }
     }

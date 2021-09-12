@@ -70,8 +70,10 @@ class InitialView: UIView {
         loadingIndicator.isHidden = true
     }
     
-    private func setupAcessibility (){
-        self.accessibilityElements = [scanText,scanButton]
+    private func setupAcessibility () {
+        self.accessibilityElements = [scanButton]
+        scanText.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        scanText.adjustsFontForContentSizeCategory = true
     }
     
     private func setupGradient() {
@@ -81,7 +83,6 @@ class InitialView: UIView {
     
     private func setupScanButton() {
         scanButton.clipsToBounds = true
-//        scanButton.layer.cornerRadius = (frame.width * 0.7) / 2
         scanButton.addAction(UIAction(handler: {(_) in
             self.didTapScanButton?()
         }), for: .touchUpInside)

@@ -45,7 +45,7 @@ final class WalletViewController: UIViewController {
 
     private func setupPickerAddPhotoButton() {
         coordinator.pickerAddPhoto.delegate = self
-        coordinator.pickerAddPhoto.sourceType = .photoLibrary //no device real, mudar para .camera
+        coordinator.pickerAddPhoto.sourceType = .camera //no device real, mudar para .camera
     }
     
     private func bindActions() {
@@ -138,5 +138,13 @@ extension WalletViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
 }

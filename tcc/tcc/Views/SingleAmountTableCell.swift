@@ -20,11 +20,9 @@ class SingleAmountTableCell: UITableViewCell {
         backgroundColor = .tccBlack
         textLabel?.textColor = .white
         textLabel?.textAlignment = .left
-        textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        textLabel?.numberOfLines = 1
-        NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: 20)
-        ])
+        textLabel?.numberOfLines = 0
+        textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+        textLabel?.adjustsFontForContentSizeCategory = true
     }
     
     func show(value: Int, amount: Int) {
