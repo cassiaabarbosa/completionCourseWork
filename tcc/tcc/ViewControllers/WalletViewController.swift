@@ -45,7 +45,7 @@ final class WalletViewController: UIViewController {
 
     private func setupPickerAddPhotoButton() {
         coordinator.pickerAddPhoto.delegate = self
-        coordinator.pickerAddPhoto.sourceType = .camera //no device real, mudar para .camera
+        coordinator.pickerAddPhoto.sourceType = .camera
     }
     
     private func bindActions() {

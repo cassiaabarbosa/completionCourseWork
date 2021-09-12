@@ -102,8 +102,7 @@ class WalletView: UIView {
     }
     
     private func setupRepeatScan() {
-        repeatScan.setTitle("Fotografar novamente", // na acassibilidade, seria bom que falasse além do nome do botão, "O valor da nota recém reconhecida será desconsiderado."
-                            for: .normal)
+        repeatScan.setTitle("Fotografar novamente", for: .normal)
         repeatScan.accessibilityLabel = "Fotografar novamente a mesma nota? O valor da nota recém reconhecida será desconsiderado."
         repeatScan.titleLabel?.lineBreakMode = .byWordWrapping
         repeatScan.titleLabel?.textAlignment = .center
@@ -117,8 +116,7 @@ class WalletView: UIView {
     }
     
     private func setupNextScan() {
-        nextScan.setTitle("Continuar contagem", // na acassibilidade, seria bom que falasse além do nome do botão, "Uma nova nota deverá ser reconhecida."
-                         for: .normal)
+        nextScan.setTitle("Continuar contagem", for: .normal)
         nextScan.accessibilityTraits = .button
         nextScan.accessibilityLabel = "Fotografar uma nova nota para continuar a contagem?"
         nextScan.titleLabel?.lineBreakMode = .byWordWrapping
@@ -133,8 +131,7 @@ class WalletView: UIView {
     }
     
     private func setupNewScan() {
-        newScan.setTitle("Voltar para o início", // na acassibilidade, seria bom que falasse além do nome do botão, "Todos os valores serão apagados."
-                         for: .normal)
+        newScan.setTitle("Voltar para o início", for: .normal)
         newScan.accessibilityTraits = .button
         newScan.accessibilityLabel = "Encerrar contagem e voltar para o início?"
         newScan.titleLabel?.lineBreakMode = .byWordWrapping
