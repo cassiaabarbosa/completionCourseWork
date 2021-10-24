@@ -54,7 +54,7 @@ final class InitialViewController: UIViewController {
     
     private func setupPickerAddPhotoButton() {
         coordinator.pickerAddPhoto.delegate = self
-        coordinator.pickerAddPhoto.sourceType = .camera
+        coordinator.pickerAddPhoto.sourceType = .photoLibrary
     }
 }
 

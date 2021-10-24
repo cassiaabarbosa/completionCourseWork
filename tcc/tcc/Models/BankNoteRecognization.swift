@@ -1,7 +1,6 @@
 import UIKit
 import CoreML
 import Vision
-import ImageIO
 
 final class BankNoteRecognization {
     

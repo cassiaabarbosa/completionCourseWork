@@ -71,7 +71,7 @@ class InitialView: UIView {
     }
     
     private func setupAcessibility () {
-        self.accessibilityElements = [scanButton]
+        accessibilityElements = [scanButton]
         scanText.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         scanText.adjustsFontForContentSizeCategory = true
     }
@@ -90,7 +90,6 @@ class InitialView: UIView {
     
     private func setupScanText() {
         scanText.text = "Começar contagem"
-        scanText.accessibilityTraits = .header
         scanText.numberOfLines = .zero
         scanText.textColor = .white
         scanText.font = UIFont.boldSystemFont(ofSize: 30)

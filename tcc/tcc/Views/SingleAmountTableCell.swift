@@ -23,6 +23,7 @@ class SingleAmountTableCell: UITableViewCell {
         textLabel?.numberOfLines = 0
         textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         textLabel?.adjustsFontForContentSizeCategory = true
+        textLabel?.accessibilityTraits = .staticText
     }
     
     func show(value: Int, amount: Int) {

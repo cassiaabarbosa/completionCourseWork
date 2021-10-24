@@ -23,6 +23,7 @@ class SummationTableCell: UITableViewCell {
         textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         textLabel?.adjustsFontForContentSizeCategory = true
         textLabel?.textAlignment = .left
+        textLabel?.accessibilityTraits = .staticText
     }
 
     func show(text: String) {

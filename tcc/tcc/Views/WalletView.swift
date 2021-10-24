@@ -103,7 +103,7 @@ class WalletView: UIView {
     
     private func setupRepeatScan() {
         repeatScan.setTitle("Fotografar novamente", for: .normal)
-        repeatScan.accessibilityLabel = "Fotografar novamente a mesma nota? O valor da nota recém reconhecida será desconsiderado."
+        repeatScan.accessibilityHint = "Fotografar mesma nota e modificar valor recém reconhecido."
         repeatScan.titleLabel?.lineBreakMode = .byWordWrapping
         repeatScan.titleLabel?.textAlignment = .center
         repeatScan.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -118,7 +118,7 @@ class WalletView: UIView {
     private func setupNextScan() {
         nextScan.setTitle("Continuar contagem", for: .normal)
         nextScan.accessibilityTraits = .button
-        nextScan.accessibilityLabel = "Fotografar uma nova nota para continuar a contagem?"
+        nextScan.accessibilityHint = "Fotografar uma nova nota para continuar a contagem."
         nextScan.titleLabel?.lineBreakMode = .byWordWrapping
         nextScan.titleLabel?.textAlignment = .center
         nextScan.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -133,7 +133,7 @@ class WalletView: UIView {
     private func setupNewScan() {
         newScan.setTitle("Voltar para o início", for: .normal)
         newScan.accessibilityTraits = .button
-        newScan.accessibilityLabel = "Encerrar contagem e voltar para o início?"
+        newScan.accessibilityHint = "Encerrar contagem e voltar para o início."
         newScan.titleLabel?.lineBreakMode = .byWordWrapping
         newScan.titleLabel?.textAlignment = .center
         newScan.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
